@@ -1,9 +1,9 @@
 name: Familienkalender aktualisieren
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -11,19 +11,28 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Repository auschecken
+        uses: actions/checkout@v5
+
+      - name: Python einrichten
+        uses: actions/setup-python@v6
         with:
-          python-version: '3.12'
-      - run: pip install icalendar python-dateutil
-      - name: Kalender laden
+          python-version: "3.x"
+
+      - name: Kalender aktualisieren
         run: python update_calendar.py
+
       - name: Änderungen speichern
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add calendar.json
-          git diff --cached --quiet && exit 0
-          git commit -m "Kalender aktualisieren"
-          git push
+
+          if git diff --quiet calendar.json; then
+            echo "Keine Änderungen im Kalender."
+          else
+            git add calendar.json
+            git commit -m "Kalender automatisch aktualisiert"
+            git push
+          fi
