@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#eef2f5">
+<meta name="robots" content="noindex,nofollow">
+<title>Familienkalender</title>
+<style>
+:root{--bg:#eaf2f7;--card:#fff;--text:#1f2d3a;--muted:#687784;--line:#dbe5ec;--blue:#1677c8;--blue-soft:#e8f4fc;--radius:22px}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:linear-gradient(145deg,#e3f1f8 0%,#edf4f7 45%,#f3f5f7 100%)}
+body{padding:14px}.wrap{max-width:1500px;margin:auto}.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.title h1{margin:0;font-size:clamp(24px,3vw,38px)}.subtitle{color:var(--muted);margin-top:3px}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:0;border-radius:13px;padding:10px 14px;font-weight:800;cursor:pointer;background:#fff;color:var(--text);box-shadow:0 2px 8px rgba(0,0,0,.05);text-decoration:none}.btn.active{background:var(--blue);color:#fff}.btn.back{background:#23384a;color:#fff}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 10px 30px rgba(30,41,59,.06);overflow:hidden}.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line)}.nav button{border:0;background:var(--blue-soft);border-radius:11px;padding:8px 12px;font-weight:800;color:#155f96}.period{font-weight:850;font-size:1.05rem;text-align:center}.content{padding:12px}.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}.day{border:1px solid var(--line);border-radius:14px;min-height:180px;padding:9px;background:#fbfdff}.day.today{box-shadow:inset 0 0 0 2px var(--blue);background:#f5fbff}.day-head{font-weight:850;margin-bottom:8px}.day-date{color:var(--muted);font-size:.8rem}.event{background:var(--blue-soft);border-left:4px solid var(--blue);border-radius:8px;padding:7px 8px;margin-top:7px;font-size:.82rem}.event-time{font-weight:850;color:#155f96;margin-bottom:2px}.month{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.weekday{text-align:center;font-size:.78rem;font-weight:850;color:var(--muted);padding:4px}.cell{min-height:120px;border:1px solid var(--line);border-radius:12px;padding:7px;background:#fff}.cell.other{opacity:.38}.cell.today{box-shadow:inset 0 0 0 2px var(--blue);background:#f5fbff}.cell-num{font-weight:850}.month-event{font-size:.73rem;background:var(--blue-soft);border-radius:7px;padding:4px 5px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.empty{color:var(--muted);padding:30px;text-align:center}@media(max-width:900px){.week{grid-template-columns:1fr}.day{min-height:auto}.month{gap:3px}.cell{min-height:85px;padding:5px}.month-event{font-size:.65rem}.topbar{align-items:flex-start;flex-direction:column}}@media(orientation:landscape) and (min-width:700px){body{padding:8px}.topbar{margin-bottom:8px}.title h1{font-size:26px}.content{padding:8px}.day{min-height:150px}.cell{min-height:95px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="title"><h1>Familienkalender</h1><div class="subtitle">Wochen- und Monatsübersicht</div></div>
+    <div class="actions">
+      <button id="weekBtn" class="btn active">Woche</button>
+      <button id="monthBtn" class="btn">Monat</button>
+      <a class="btn back" href="index.html">← Dashboard</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="nav"><button id="prev">‹</button><div id="period" class="period"></div><button id="next">›</button></div>
+    <div id="content" class="content"><div class="empty">Kalender wird geladen …</div></div>
+  </div>
+</div>
+<script>
+const TZ='Europe/Zurich'; let events=[]; let view='week'; let cursor=new Date();
+function key(d){return new Intl.DateTimeFormat('sv-SE',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'}).format(d)}
+function dayStart(d){const x=new Date(d);x.setHours(0,0,0,0);return x}
+function monday(d){const x=dayStart(d),n=(x.getDay()+6)%7;x.setDate(x.getDate()-n);return x}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function time(e){if(e.allDay)return 'Ganztägig';return new Intl.DateTimeFormat('de-CH',{timeZone:TZ,hour:'2-digit',minute:'2-digit'}).format(e.startDate)}
+function eventsFor(d){const k=key(d);return events.filter(e=>key(e.startDate)===k).sort((a,b)=>a.startDate-b.startDate)}
+function render(){view==='week'?renderWeek():renderMonth();document.getElementById('weekBtn').classList.toggle('active',view==='week');document.getElementById('monthBtn').classList.toggle('active',view==='month')}
+function renderWeek(){const start=monday(cursor),end=new Date(start);end.setDate(start.getDate()+6);document.getElementById('period').textContent=`${start.toLocaleDateString('de-CH',{day:'2-digit',month:'short'})} – ${end.toLocaleDateString('de-CH',{day:'2-digit',month:'short',year:'numeric'})}`;let h='<div class="week">';for(let i=0;i<7;i++){const d=new Date(start);d.setDate(start.getDate()+i);const today=key(d)===key(new Date());h+=`<div class="day${today?' today':''}"><div class="day-head">${d.toLocaleDateString('de-CH',{weekday:'short'})} <span class="day-date">${d.toLocaleDateString('de-CH',{day:'2-digit',month:'2-digit'})}</span></div>`;const es=eventsFor(d);if(!es.length)h+='<div class="day-date">Keine Termine</div>';for(const e of es)h+=`<div class="event"><div class="event-time">${time(e)}</div><div>${esc(e.title||'Termin')}</div></div>`;h+='</div>'}h+='</div>';document.getElementById('content').innerHTML=h}
+function renderMonth(){const first=new Date(cursor.getFullYear(),cursor.getMonth(),1),start=monday(first);document.getElementById('period').textContent=first.toLocaleDateString('de-CH',{month:'long',year:'numeric'});let h='<div class="month">';for(const w of ['Mo','Di','Mi','Do','Fr','Sa','So'])h+=`<div class="weekday">${w}</div>`;for(let i=0;i<42;i++){const d=new Date(start);d.setDate(start.getDate()+i);const other=d.getMonth()!==first.getMonth(),today=key(d)===key(new Date());h+=`<div class="cell${other?' other':''}${today?' today':''}"><div class="cell-num">${d.getDate()}</div>`;const es=eventsFor(d);for(const e of es.slice(0,3))h+=`<div class="month-event" title="${esc(e.title||'Termin')}">${time(e)} ${esc(e.title||'Termin')}</div>`;if(es.length>3)h+=`<div class="month-event">+${es.length-3} weitere</div>`;h+='</div>'}h+='</div>';document.getElementById('content').innerHTML=h}
+async function load(){try{const r=await fetch('calendar.json',{cache:'no-store'});if(!r.ok)throw new Error();const d=await r.json();events=(Array.isArray(d)?d:(d.events||[])).map(e=>({...e,startDate:new Date(e.start),endDate:e.end?new Date(e.end):null})).filter(e=>!Number.isNaN(e.startDate.getTime()));render()}catch{document.getElementById('content').innerHTML='<div class="empty">Kalender ist noch nicht verbunden.</div>';document.getElementById('period').textContent='–'}}
+document.getElementById('weekBtn').onclick=()=>{view='week';render()};document.getElementById('monthBtn').onclick=()=>{view='month';render()};document.getElementById('prev').onclick=()=>{view==='week'?cursor.setDate(cursor.getDate()-7):cursor.setMonth(cursor.getMonth()-1);render()};document.getElementById('next').onclick=()=>{view==='week'?cursor.setDate(cursor.getDate()+7):cursor.setMonth(cursor.getMonth()+1);render()};load();setInterval(load,5*60*1000);
+</script>
+</body>
+</html>
