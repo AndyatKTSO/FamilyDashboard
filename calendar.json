@@ -1,10 +1,29 @@
 {
+  "updated": "2026-10-05T08:43:54.792668+00:00",
   "events": [
     {
-      "title": "Beispieltermin",
-      "start": "2026-10-05T18:00:00+02:00",
-      "end": "2026-10-05T19:00:00+02:00",
-      "allDay": false
+      "title": "Hochzeitstag",
+      "start": "2026-10-02",
+      "end": "2026-10-03",
+      "allDay": true
+    },
+    {
+      "title": "Luzia Geburtstag",
+      "start": "2026-10-17",
+      "end": "2026-10-18",
+      "allDay": true
+    },
+    {
+      "title": "Hochzeitstag",
+      "start": "2027-10-02",
+      "end": "2027-10-03",
+      "allDay": true
+    },
+    {
+      "title": "Luzia Geburtstag",
+      "start": "2027-10-17",
+      "end": "2027-10-18",
+      "allDay": true
     }
   ]
 }
