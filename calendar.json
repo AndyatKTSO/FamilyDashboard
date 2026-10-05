@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-05T09:48:41.791168+00:00",
+  "updated": "2026-10-05T14:22:07.940196+00:00",
   "events": [
     {
       "title": "Hochzeitstag",
@@ -8,7 +8,7 @@
       "allDay": true
     },
     {
-      "title": "Testtermin - Papi bastelt - ignorieren!",
+      "title": "Testtermin - Papi bastelt weiter- ignorieren!",
       "start": "2026-10-05T11:00:00+02:00",
       "end": "2026-10-05T12:00:00+02:00",
       "allDay": false
