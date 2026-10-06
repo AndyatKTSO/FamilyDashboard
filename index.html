@@ -302,13 +302,17 @@ function localDateKey(date){
 function fmtTime(date){
   return new Intl.DateTimeFormat('de-CH',{timeZone:'Europe/Zurich',hour:'2-digit',minute:'2-digit'}).format(date);
 }
+function isAllDayEvent(e){
+  return e.allDay===true || e.allDay==='true' || /^\d{4}-\d{2}-\d{2}$/.test(String(e.start||''));
+}
+
 function eventOccursOnDay(e, dayDate){
   const target=localDateKey(dayDate);
 
   // Ganztägige iCalendar-Termine verwenden reine Datumswerte.
   // DTEND ist dabei exklusiv: 06.–08.10. wird z.B. als Start 06.10.,
   // Ende 09.10. geliefert und darf am 09.10. NICHT mehr erscheinen.
-  if(e.allDay){
+  if(isAllDayEvent(e)){
     const startKey=String(e.start||'').slice(0,10);
     const endKey=e.end ? String(e.end).slice(0,10) : '';
     return endKey ? (target>=startKey && target<endKey) : target===startKey;
@@ -321,7 +325,7 @@ function eventOccursOnDay(e, dayDate){
   return target>=startKey && target<=endKey;
 }
 function eventTimeForDay(e, dayDate){
-  if(e.allDay) return 'Ganztägig';
+  if(isAllDayEvent(e)) return 'Ganztägig';
   const target=localDateKey(dayDate);
   const startKey=localDateKey(e.startDate);
   const endKey=e.endDate?localDateKey(new Date(e.endDate.getTime()-1)):startKey;
@@ -343,7 +347,7 @@ async function loadTodayEvents(){
       ...e,startDate:new Date(e.start),endDate:e.end?new Date(e.end):null
     })).filter(e=>!Number.isNaN(e.startDate.getTime()));
     const uniqueEvents=[...new Map(events.map(e=>[
-      `${e.title||''}|${e.start||''}|${e.end||''}|${e.allDay?'1':'0'}`,e
+      `${e.title||''}|${e.start||''}|${e.end||''}|${isAllDayEvent(e)?'1':'0'}`,e
     ])).values()];
     const today=localDateKey(now);
     const todays=uniqueEvents.filter(e=>eventOccursOnDay(e,now)).sort((a,b)=>a.startDate-b.startDate);
