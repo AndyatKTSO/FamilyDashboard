@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T08:31:11.489547+00:00",
+  "updated": "2026-10-06T08:45:50.022680+00:00",
   "events": [
     {
       "title": "Hochzeitstag",
@@ -8,13 +8,19 @@
       "allDay": true
     },
     {
-      "title": "Ganzer Tag Arbeiten",
+      "title": "S: Lager",
+      "start": "2026-10-04T12:00:00+02:00",
+      "end": "2026-10-10T15:00:00+02:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Ganzer Tag Arbeiten",
       "start": "2026-10-06T08:00:00+02:00",
       "end": "2026-10-06T19:00:00+02:00",
       "allDay": false
     },
     {
-      "title": "Nachmittag Arbeiten",
+      "title": "M: Nachmittag Arbeiten",
       "start": "2026-10-07T13:00:00+02:00",
       "end": "2026-10-07T19:00:00+02:00",
       "allDay": false
@@ -32,9 +38,27 @@
       "allDay": false
     },
     {
-      "title": "Nachmittag Arbeiten",
+      "title": "M: Nachmittag Arbeiten",
       "start": "2026-10-09T13:00:00+02:00",
       "end": "2026-10-09T19:00:00+02:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-10-12T13:00:00+02:00",
+      "end": "2026-10-12T19:00:00+02:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Ganzer Tag Arbeiten",
+      "start": "2026-10-13T08:00:00+02:00",
+      "end": "2026-10-13T19:00:00+02:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Ganzer Tag Arbeiten",
+      "start": "2026-10-14T08:00:00+02:00",
+      "end": "2026-10-14T19:00:00+02:00",
       "allDay": false
     },
     {
@@ -44,33 +68,63 @@
       "allDay": false
     },
     {
+      "title": "Seerose",
+      "start": "2026-10-16T12:00:00+02:00",
+      "end": "2026-10-18T13:00:00+02:00",
+      "allDay": false
+    },
+    {
       "title": "Luzia Geburtstag",
       "start": "2026-10-17",
       "end": "2026-10-18",
       "allDay": true
     },
     {
-      "title": "Nachmittag Arbeiten",
-      "start": "2026-10-19T13:00:00+02:00",
+      "title": "M: Ganzer Tag Arbeiten",
+      "start": "2026-10-19T08:00:00+02:00",
       "end": "2026-10-19T19:00:00+02:00",
       "allDay": false
     },
     {
-      "title": "Ganzer Tag Arbeiten",
+      "title": "M: Ganzer Tag Arbeiten",
       "start": "2026-10-20T08:00:00+02:00",
       "end": "2026-10-20T19:00:00+02:00",
       "allDay": false
     },
     {
-      "title": "Ganzer Tag Arbeiten",
-      "start": "2026-10-21T08:00:00+02:00",
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-10-21T13:00:00+02:00",
       "end": "2026-10-21T19:00:00+02:00",
       "allDay": false
     },
     {
-      "title": "Nachmittag Arbeiten",
-      "start": "2026-10-22T13:00:00+02:00",
-      "end": "2026-10-22T19:00:00+02:00",
+      "title": "F: Zirkus Monti",
+      "start": "2026-10-22T19:00:00+02:00",
+      "end": "2026-10-22T23:00:00+02:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-10-23T13:00:00+02:00",
+      "end": "2026-10-23T19:00:00+02:00",
+      "allDay": false
+    },
+    {
+      "title": "FTN",
+      "start": "2026-10-24T20:00:00+02:00",
+      "end": "2026-10-24T23:00:00+02:00",
+      "allDay": false
+    },
+    {
+      "title": "Lotto Gretzenbach",
+      "start": "2026-10-25T12:00:00+01:00",
+      "end": "2026-10-25T18:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Ganzer Tag Arbeiten",
+      "start": "2026-10-26T08:00:00+01:00",
+      "end": "2026-10-26T19:00:00+01:00",
       "allDay": false
     },
     {
@@ -80,9 +134,69 @@
       "allDay": false
     },
     {
+      "title": "M: Ganzer Tag Arbeiten",
+      "start": "2026-10-30T08:00:00+01:00",
+      "end": "2026-10-30T19:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Ganzer Tag Arbeiten",
+      "start": "2026-10-31T08:00:00+01:00",
+      "end": "2026-10-31T19:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "S: Projekt Musik",
+      "start": "2026-11-02T08:00:00+01:00",
+      "end": "2026-11-02T17:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "S: ÜK",
+      "start": "2026-11-04T08:00:00+01:00",
+      "end": "2026-11-04T17:00:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "A: Massage",
       "start": "2026-11-05T14:30:00+01:00",
       "end": "2026-11-05T15:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "S: Projekt Musik",
+      "start": "2026-11-06T08:00:00+01:00",
+      "end": "2026-11-06T17:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "F: Zermatt meets Olten",
+      "start": "2026-11-06T17:00:00+01:00",
+      "end": "2026-11-06T22:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "S: Projekt Musik",
+      "start": "2026-11-09T08:00:00+01:00",
+      "end": "2026-11-09T17:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "S: Projekt Musik",
+      "start": "2026-11-13T08:00:00+01:00",
+      "end": "2026-11-13T17:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "S: Firmweg Abschluss",
+      "start": "2026-11-20T19:00:00+01:00",
+      "end": "2026-11-20T22:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "F: Theater",
+      "start": "2026-11-21T19:00:00+01:00",
+      "end": "2026-11-21T23:00:00+01:00",
       "allDay": false
     },
     {
@@ -95,6 +209,12 @@
       "title": "A: Massage",
       "start": "2026-11-26T14:30:00+01:00",
       "end": "2026-11-26T15:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "F: Mobiliar Schützi",
+      "start": "2026-11-27T18:00:00+01:00",
+      "end": "2026-11-27T23:00:00+01:00",
       "allDay": false
     },
     {
