@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T06:31:09.868471+00:00",
+  "updated": "2026-10-06T06:45:47.896783+00:00",
   "events": [
     {
       "title": "Hochzeitstag",
@@ -8,19 +8,7 @@
       "allDay": true
     },
     {
-      "title": "Testtermin - Papi bastelt weiter- ignorieren!",
-      "start": "2026-10-05T11:00:00+02:00",
-      "end": "2026-10-05T12:00:00+02:00",
-      "allDay": false
-    },
-    {
-      "title": "Noch ein Test",
-      "start": "2026-10-06T11:00:00+02:00",
-      "end": "2026-10-06T12:00:00+02:00",
-      "allDay": false
-    },
-    {
-      "title": "Andy Massage",
+      "title": "A: Massage",
       "start": "2026-10-15T14:30:00+02:00",
       "end": "2026-10-15T15:30:00+02:00",
       "allDay": false
@@ -30,6 +18,42 @@
       "start": "2026-10-17",
       "end": "2026-10-18",
       "allDay": true
+    },
+    {
+      "title": "A: B&S",
+      "start": "2026-10-27T16:45:00+01:00",
+      "end": "2026-10-27T17:45:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "A: Massage",
+      "start": "2026-11-05T14:30:00+01:00",
+      "end": "2026-11-05T15:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "A: B&S",
+      "start": "2026-11-24T18:00:00+01:00",
+      "end": "2026-11-24T19:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "A: Massage",
+      "start": "2026-11-26T14:30:00+01:00",
+      "end": "2026-11-26T15:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "A: Massage",
+      "start": "2026-12-17T14:30:00+01:00",
+      "end": "2026-12-17T15:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "A: B&S",
+      "start": "2026-12-22T17:45:00+01:00",
+      "end": "2026-12-22T18:45:00+01:00",
+      "allDay": false
     },
     {
       "title": "Hochzeitstag",
