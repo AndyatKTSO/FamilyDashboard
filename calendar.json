@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T08:45:50.022680+00:00",
+  "updated": "2026-10-06T09:01:24.241009+00:00",
   "events": [
     {
       "title": "Hochzeitstag",
@@ -110,7 +110,7 @@
       "allDay": false
     },
     {
-      "title": "FTN",
+      "title": "A: FTN",
       "start": "2026-10-24T20:00:00+02:00",
       "end": "2026-10-24T23:00:00+02:00",
       "allDay": false
@@ -218,16 +218,52 @@
       "allDay": false
     },
     {
+      "title": "M: Belgien-Amsterdam",
+      "start": "2026-11-29T12:00:00+01:00",
+      "end": "2026-12-06T13:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "S: Arzt",
+      "start": "2026-11-30T16:45:00+01:00",
+      "end": "2026-11-30T17:45:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "F: Amsterdam",
+      "start": "2026-12-03T19:00:00+01:00",
+      "end": "2026-12-06T13:00:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "A: Massage",
       "start": "2026-12-17T14:30:00+01:00",
       "end": "2026-12-17T15:30:00+01:00",
       "allDay": false
     },
     {
+      "title": "S: Keine Schule",
+      "start": "2026-12-21",
+      "end": "2026-12-22",
+      "allDay": true
+    },
+    {
+      "title": "S: Keine Schule",
+      "start": "2026-12-22",
+      "end": "2026-12-23",
+      "allDay": true
+    },
+    {
       "title": "A: B&S",
       "start": "2026-12-22T17:45:00+01:00",
       "end": "2026-12-22T18:45:00+01:00",
       "allDay": false
+    },
+    {
+      "title": "S: Ferien",
+      "start": "2026-12-24",
+      "end": "2027-01-04",
+      "allDay": true
     },
     {
       "title": "Hochzeitstag",
