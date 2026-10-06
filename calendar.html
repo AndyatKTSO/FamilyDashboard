@@ -46,10 +46,14 @@ function key(d){return new Intl.DateTimeFormat('sv-SE',{timeZone:TZ,year:'numeri
 function dayStart(d){const x=new Date(d);x.setHours(0,0,0,0);return x}
 function monday(d){const x=dayStart(d),n=(x.getDay()+6)%7;x.setDate(x.getDate()-n);return x}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function isAllDayEvent(e){
+  return e.allDay===true || e.allDay==='true' || /^\d{4}-\d{2}-\d{2}$/.test(String(e.start||''));
+}
+
 function eventOccursOnDay(e,d){
   const target=key(d);
 
-  if(e.allDay){
+  if(isAllDayEvent(e)){
     const startKey=String(e.start||'').slice(0,10);
     const endKey=e.end ? String(e.end).slice(0,10) : '';
     return endKey ? (target>=startKey && target<endKey) : target===startKey;
@@ -62,7 +66,7 @@ function eventOccursOnDay(e,d){
   return target>=startKey&&target<=endKey;
 }
 function timeForDay(e,d){
-  if(e.allDay)return 'Ganztägig';
+  if(isAllDayEvent(e))return 'Ganztägig';
   const target=key(d),startKey=key(e.startDate);
   const endKey=e.endDate?key(new Date(e.endDate.getTime()-1)):startKey;
   const fmt=x=>new Intl.DateTimeFormat('de-CH',{timeZone:TZ,hour:'2-digit',minute:'2-digit'}).format(x);
@@ -78,7 +82,7 @@ function renderMonth(){const first=new Date(cursor.getFullYear(),cursor.getMonth
 async function load(){try{const r=await fetch('calendar.json',{cache:'no-store'});if(!r.ok)throw new Error();const d=await r.json();events=(Array.isArray(d)?d:(d.events||[])).map(e=>({...e,startDate:new Date(e.start),endDate:e.end?new Date(e.end):null})).filter(e=>!Number.isNaN(e.startDate.getTime()));
 const unique=new Map();
 for(const e of events){
-  const id=`${e.title||''}|${e.start||''}|${e.end||''}|${e.allDay?'1':'0'}`;
+  const id=`${e.title||''}|${e.start||''}|${e.end||''}|${isAllDayEvent(e)?'1':'0'}`;
   if(!unique.has(id)) unique.set(id,e);
 }
 events=[...unique.values()];
