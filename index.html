@@ -57,15 +57,27 @@ body{padding:10px}
 
 /* ÖV: gleiche Kartenhöhe wie Wetter, mehr sichtbare Abfahrten, ruhigere interne Schrift */
 .grid > .card:nth-child(2){display:flex;flex-direction:column;min-height:0}
-.oev-head{padding:15px 16px 10px;border-bottom:1px solid var(--line);flex:0 0 auto}
-.oev-frame-wrap{flex:1 1 auto;min-height:0;background:#fff;overflow:hidden}
+.oev-head{
+  padding:11px 13px 7px;
+  border-bottom:1px solid var(--line);
+  flex:0 0 auto;
+}
+.grid > .card:nth-child(2) .oev-head h2{font-size:16px}
+.grid > .card:nth-child(2) .oev-head .subtitle{font-size:11px}
+.oev-frame-wrap{
+  height:392px;
+  flex:0 0 392px;
+  min-height:0;
+  background:#fff;
+  overflow:hidden;
+}
 .oev-frame{
-  width:152%;
-  height:152%;
+  width:164%;
+  height:164%;
   border:0;
   display:block;
   background:#fff;
-  transform:scale(.66);
+  transform:scale(.61);
   transform-origin:top left;
 }
 
@@ -83,15 +95,19 @@ body{padding:10px}
   body{padding:8px}
   .grid{gap:8px}
   .card-inner{padding:13px 14px}
-  .oev-head{padding:13px 14px 9px}
+  .oev-head{padding:10px 12px 6px}
   .weather-top{min-height:70px;margin:9px 0 8px;padding:8px 11px}
   .current-temp{font-size:38px}
   .weather-icon{font-size:34px}
   .hour{min-height:82px;padding:6px 4px}
   .metrics{margin-top:8px}
-  .oev-frame-wrap{min-height:0}
-  .calendar-today{min-height:270px}
-  .today-events{grid-template-columns:repeat(4,minmax(0,1fr));padding:12px 14px 15px}
+  .oev-frame-wrap{height:392px;flex-basis:392px}
+  .calendar-today{min-height:245px}
+  .today-events{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    grid-auto-rows:minmax(60px,auto);
+    padding:12px 14px 15px
+  }
 }
 @media (orientation: portrait), (max-width:699px){
   .grid{grid-template-columns:1fr}
@@ -113,6 +129,20 @@ body{padding:10px}
 .event-m{background:rgba(156,39,176,.10)!important;border-left-color:rgba(142,36,170,.45)!important}
 .event-s{background:rgba(236,64,122,.09)!important;border-left-color:rgba(216,27,96,.42)!important}
 .event-f{background:rgba(255,193,7,.13)!important;border-left-color:rgba(245,166,35,.50)!important}
+
+
+@media (orientation: landscape) and (min-width:900px) and (max-width:1400px){
+  .grid{
+    grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);
+    align-items:start;
+  }
+  .grid > .card:nth-child(2){height:auto}
+  .calendar-today{min-height:245px}
+  .today-events{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    grid-auto-rows:minmax(60px,auto);
+  }
+}
 
 </style>
 </head>
@@ -356,7 +386,7 @@ async function loadTodayEvents(){
       box.innerHTML='<div class="event-empty">Heute keine Termine.</div>';
       return;
     }
-    todays.slice(0,4).forEach(e=>{
+    todays.slice(0,8).forEach(e=>{
       const el=document.createElement('div');
       el.className='today-event'+eventPrefixClass(e.title);
       const time=eventTimeForDay(e,now);
@@ -364,10 +394,10 @@ async function loadTodayEvents(){
       el.querySelector('.event-title').textContent=e.title||'Termin';
       box.appendChild(el);
     });
-    if(todays.length>4){
+    if(todays.length>8){
       const more=document.createElement('div');
       more.className='event-empty';
-      more.textContent=`+ ${todays.length-4} weitere Termine – im Kalender anzeigen`;
+      more.textContent=`+ ${todays.length-8} weitere Termine – im Kalender anzeigen`;
       box.appendChild(more);
     }
   }catch(e){
