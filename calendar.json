@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-10T07:45:42.308717+00:00",
+  "updated": "2026-10-10T08:01:08.567244+00:00",
   "events": [
     {
       "title": "Hochzeitstag",
@@ -161,6 +161,12 @@
       "title": "M: Ganzer Tag Arbeiten",
       "start": "2026-10-31T08:00:00+01:00",
       "end": "2026-10-31T19:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "A: Ganzer Tag Raum",
+      "start": "2026-10-31T08:00:00+01:00",
+      "end": "2026-10-31T16:00:00+01:00",
       "allDay": false
     },
     {
