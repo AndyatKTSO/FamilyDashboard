@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-12T17:45:43.653761+00:00",
+  "updated": "2026-10-12T18:01:25.964195+00:00",
   "events": [
     {
       "title": "Hochzeitstag",
@@ -182,15 +182,33 @@
       "allDay": false
     },
     {
+      "title": "M: ganzer Tag",
+      "start": "2026-11-02T08:30:00+01:00",
+      "end": "2026-11-02T18:30:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "F: Salome Hautarzt",
       "start": "2026-11-02T16:30:00+01:00",
       "end": "2026-11-02T17:30:00+01:00",
       "allDay": false
     },
     {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-11-03T13:35:00+01:00",
+      "end": "2026-11-03T18:30:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "S: ÜK",
       "start": "2026-11-04T08:00:00+01:00",
       "end": "2026-11-04T17:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: ganzer Tag Arbeiten",
+      "start": "2026-11-04T08:30:00+01:00",
+      "end": "2026-11-04T18:30:00+01:00",
       "allDay": false
     },
     {
@@ -206,6 +224,12 @@
       "allDay": false
     },
     {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-11-06T13:30:00+01:00",
+      "end": "2026-11-06T18:30:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "F: Zermatt meets Olten",
       "start": "2026-11-06T17:00:00+01:00",
       "end": "2026-11-06T22:00:00+01:00",
@@ -218,9 +242,51 @@
       "allDay": false
     },
     {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-11-09T13:30:00+01:00",
+      "end": "2026-11-09T18:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: ganzer Tag Arbeiten",
+      "start": "2026-11-10T08:30:00+01:00",
+      "end": "2026-11-10T18:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: ganzer Tag Arbeiten",
+      "start": "2026-11-11T08:30:00+01:00",
+      "end": "2026-11-11T18:30:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "S: Projekt Musik",
       "start": "2026-11-13T08:00:00+01:00",
       "end": "2026-11-13T17:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-11-13T13:30:00+01:00",
+      "end": "2026-11-13T18:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: ganzer Tag Arbeiten",
+      "start": "2026-11-16T08:30:00+01:00",
+      "end": "2026-11-16T18:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: ganzer Tag Arbeiten",
+      "start": "2026-11-17T08:30:00+01:00",
+      "end": "2026-11-17T18:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-11-18T13:30:00+01:00",
+      "end": "2026-11-18T18:30:00+01:00",
       "allDay": false
     },
     {
@@ -236,9 +302,21 @@
       "allDay": false
     },
     {
+      "title": "M: ganzer Tag Arbeiten",
+      "start": "2026-11-23T08:30:00+01:00",
+      "end": "2026-11-23T18:30:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "A: B&S",
       "start": "2026-11-24T18:00:00+01:00",
       "end": "2026-11-24T19:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-11-25T13:30:00+01:00",
+      "end": "2026-11-25T18:30:00+01:00",
       "allDay": false
     },
     {
@@ -248,9 +326,21 @@
       "allDay": false
     },
     {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-11-27T13:30:00+01:00",
+      "end": "2026-11-27T18:30:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "F: Mobiliar Schützi",
       "start": "2026-11-27T18:00:00+01:00",
       "end": "2026-11-27T23:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: ganzer Tag Arbeiten",
+      "start": "2026-11-28T08:30:00+01:00",
+      "end": "2026-11-28T16:00:00+01:00",
       "allDay": false
     },
     {
