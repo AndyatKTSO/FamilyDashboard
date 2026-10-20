@@ -55,27 +55,49 @@ body{padding:10px}
 .section-note{font-size:10px;color:var(--muted);margin-top:7px}
 .status{color:var(--muted);font-size:var(--small);margin-top:8px}.error{color:#b42318}
 
-/* ÖV: gleiche Kartenhöhe wie Wetter, mehr sichtbare Abfahrten, ruhigere interne Schrift */
+/* ÖV: eigene Abfahrtsanzeige – ohne eingebetteten FreeMonitor */
 .grid > .card:nth-child(2){display:flex;flex-direction:column;min-height:0}
 .oev-head{padding:13px 14px 9px;border-bottom:1px solid var(--line);flex:0 0 auto}
 .grid > .card:nth-child(2) .oev-head h2{font-size:17px}
 .grid > .card:nth-child(2) .oev-head .subtitle{font-size:11px}
 .oev-frame-wrap{
-  height:392px;
-  flex:0 0 392px;
+  flex:1 1 auto;
   min-height:0;
   background:#fff;
-  overflow:hidden
+  overflow:hidden;
 }
-.oev-frame{
-  width:125%;
-  height:125%;
-  border:0;
-  display:block;
-  background:#fff;
-  transform:scale(.80);
-  transform-origin:top left;
+.bus-board{height:100%;display:flex;flex-direction:column}
+.bus-status{padding:12px 14px;color:var(--muted);font-size:13px}
+.bus-row{
+  display:grid;
+  grid-template-columns:64px 1fr 88px;
+  gap:10px;
+  align-items:center;
+  min-height:59px;
+  padding:8px 14px;
+  border-bottom:1px solid var(--line);
 }
+.bus-row:last-child{border-bottom:0}
+.bus-time{font-size:24px;font-weight:800;letter-spacing:-.03em}
+.bus-main{min-width:0}
+.bus-line{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:42px;
+  padding:4px 8px;
+  border-radius:8px;
+  background:#316fa0;
+  color:#fff;
+  font-size:14px;
+  font-weight:800;
+  line-height:1;
+}
+.bus-dest{margin-top:5px;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bus-countdown{text-align:right;font-size:15px;font-weight:800;color:#315e78}
+.bus-countdown small{display:block;margin-top:2px;color:var(--muted);font-size:10px;font-weight:650}
+.bus-delay{color:#b45309}
+.bus-error{color:#b42318}
 
 /* Kalender: gleichwertiger Hauptbereich mit deutlich mehr Platz */
 .calendar-today{grid-column:1/-1;min-height:255px}
@@ -103,8 +125,6 @@ body{padding:10px}
 }
 @media (orientation: portrait), (max-width:699px){
   .grid{grid-template-columns:1fr}
-  .oev-frame-wrap{height:390px}
-  .oev-frame{width:125%;height:125%;transform:scale(.80)}
   .calendar-today{grid-column:1}
   .today-events{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
@@ -129,7 +149,6 @@ body{padding:10px}
     grid-auto-rows:minmax(60px,auto);
   }
   .calendar-today{min-height:245px}
-  .oev-frame-wrap{height:392px;flex-basis:392px}
 }
 
 
@@ -221,12 +240,9 @@ body{padding:10px}
       <div class="subtitle">Linie 502 · nächste Abfahrten</div>
     </div>
     <div class="oev-frame-wrap">
-      <iframe
-        class="oev-frame"
-        src="https://freemonitor.oevplus.ch/monitor?linesPerScreen=5&title=%22Starrkirch%2C+R%C3%BCtli%22&showPlatform=false&stations=%5B%7B%22stationId%22%3A%228590434%22%2C%22lines%22%3A%5B%7B%22lineId%22%3A%22502%22%2C%22directionIds%22%3A%5B%22outbound%22%5D%7D%2C%7B%22lineId%22%3A%2285%3A793%3A502%22%2C%22directionIds%22%3A%5B%222%22%5D%7D%5D%7D%5D"
-        title="Abfahrten Starrkirch Rütli Richtung Olten"
-        loading="eager">
-      </iframe>
+      <div id="busBoard" class="bus-board">
+        <div class="bus-status">Abfahrten werden geladen …</div>
+      </div>
     </div>
   </section>
 
@@ -350,6 +366,121 @@ async function loadWeather(){
 }
 
 
+
+const BUS_STATION_ID = '8590434';
+const BUS_LINE = '502';
+
+function escapeHtml(value){
+  return String(value ?? '')
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'",'&#039;');
+}
+
+function busDepartureDate(item){
+  const realtime = item?.stop?.prognosis?.departure;
+  const scheduled = item?.stop?.departure;
+  const value = realtime || scheduled;
+  const dt = value ? new Date(value) : null;
+  return dt && !Number.isNaN(dt.getTime()) ? dt : null;
+}
+
+function busScheduledDate(item){
+  const value = item?.stop?.departure;
+  const dt = value ? new Date(value) : null;
+  return dt && !Number.isNaN(dt.getTime()) ? dt : null;
+}
+
+function isBus502ToOlten(item){
+  const number = String(item?.number ?? item?.name ?? '').trim();
+  const to = String(item?.to ?? '').toLowerCase();
+
+  const lineMatches =
+    number === BUS_LINE ||
+    number.endsWith(' 502') ||
+    number.includes('502');
+
+  // Richtung Olten: Die Linie 502 fährt über Olten weiter bis Trimbach.
+  // Die API nennt deshalb oft Trimbach als Endziel und nicht Olten.
+  const directionMatches =
+    to.includes('trimbach') ||
+    to.includes('olten');
+
+  return lineMatches && directionMatches;
+}
+
+async function loadBusDepartures(){
+  const board = document.getElementById('busBoard');
+  const now = new Date();
+  const until = new Date(now.getTime() + 60*60*1000);
+
+  try{
+    const url =
+      `https://transport.opendata.ch/v1/stationboard?id=${encodeURIComponent(BUS_STATION_ID)}`+
+      `&limit=30&transportations[]=bus`;
+
+    const r = await fetch(url,{cache:'no-store'});
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+
+    const data = await r.json();
+    const raw = Array.isArray(data.stationboard) ? data.stationboard : [];
+
+    const departures = raw
+      .filter(isBus502ToOlten)
+      .map(item => ({
+        item,
+        departure: busDepartureDate(item),
+        scheduled: busScheduledDate(item)
+      }))
+      .filter(x => x.departure && x.departure >= new Date(now.getTime()-60*1000) && x.departure <= until)
+      .sort((a,b) => a.departure-b.departure)
+      .slice(0,5);
+
+    board.innerHTML='';
+
+    if(!departures.length){
+      board.innerHTML =
+        '<div class="bus-status">In der nächsten Stunde wurden für Linie 502 Richtung Olten keine Abfahrten gefunden.</div>';
+      return;
+    }
+
+    departures.forEach(({item,departure,scheduled})=>{
+      const diffMin = Math.max(0,Math.round((departure-now)/60000));
+      const delayMin = scheduled ? Math.max(0,Math.round((departure-scheduled)/60000)) : 0;
+      const time = departure.toLocaleTimeString('de-CH',{
+        timeZone:'Europe/Zurich',
+        hour:'2-digit',
+        minute:'2-digit'
+      });
+
+      const destination = escapeHtml(item.to || 'Olten');
+      const delayText = delayMin > 0
+        ? `<small class="bus-delay">+${delayMin} Min.</small>`
+        : '<small>planmässig</small>';
+
+      const countdown = diffMin <= 1 ? 'jetzt' : `in ${diffMin} Min.`;
+
+      const row = document.createElement('div');
+      row.className='bus-row';
+      row.innerHTML=`
+        <div class="bus-time">${time}</div>
+        <div class="bus-main">
+          <span class="bus-line">502</span>
+          <div class="bus-dest">${destination}</div>
+        </div>
+        <div class="bus-countdown">${countdown}${delayText}</div>
+      `;
+      board.appendChild(row);
+    });
+
+  }catch(e){
+    board.innerHTML =
+      `<div class="bus-status bus-error">Busabfahrten konnten nicht geladen werden (${escapeHtml(e.message)}).</div>`;
+  }
+}
+
 function eventPrefixClass(title){
   const m=String(title||'').trim().match(/^([AEMSF]):/i);
   return m ? ' event-'+m[1].toLowerCase() : '';
@@ -435,8 +566,10 @@ async function loadTodayEvents(){
 }
 
 loadWeather();
+loadBusDepartures();
 loadTodayEvents();
 setInterval(loadWeather,10*60*1000);
+setInterval(loadBusDepartures,60*1000);
 setInterval(loadTodayEvents,5*60*1000);
 </script>
 </body>
