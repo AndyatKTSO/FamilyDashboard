@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="robots" content="noindex,nofollow">
+<title>Family Dashboard – Bildschirmschoner</title>
+
+<style>
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  overflow:hidden;
+}
+
+body{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.screen{
+  width:100%;
+  min-height:100vh;
+  padding:max(32px,env(safe-area-inset-top))
+          max(38px,env(safe-area-inset-right))
+          max(32px,env(safe-area-inset-bottom))
+          max(38px,env(safe-area-inset-left));
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.time{
+  font-size:clamp(74px,11vw,150px);
+  line-height:.95;
+  font-weight:650;
+  letter-spacing:-.05em;
+  font-variant-numeric:tabular-nums;
+}
+
+.date{
+  margin-top:14px;
+  font-size:clamp(16px,2vw,26px);
+  color:#8f8f8f;
+  font-weight:500;
+}
+
+.message{
+  margin-top:clamp(46px,7vh,80px);
+  max-width:1000px;
+  padding:0 24px;
+  font-size:clamp(28px,4vw,56px);
+  line-height:1.22;
+  font-weight:500;
+  letter-spacing:-.02em;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+.message:empty{
+  display:none;
+}
+
+.status{
+  position:fixed;
+  right:14px;
+  bottom:10px;
+  color:#2b2b2b;
+  font-size:10px;
+  user-select:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="screen">
+  <div id="time" class="time">--:--</div>
+  <div id="date" class="date"></div>
+  <div id="message" class="message"></div>
+</div>
+
+<div id="status" class="status"></div>
+
+<script>
+const MESSAGE_FILE = 'message.json';
+
+function localDateKey(date = new Date()){
+  return new Intl.DateTimeFormat('sv-SE',{
+    timeZone:'Europe/Zurich',
+    year:'numeric',
+    month:'2-digit',
+    day:'2-digit'
+  }).format(date);
+}
+
+function updateClock(){
+  const now = new Date();
+
+  document.getElementById('time').textContent =
+    new Intl.DateTimeFormat('de-CH',{
+      timeZone:'Europe/Zurich',
+      hour:'2-digit',
+      minute:'2-digit',
+      hour12:false
+    }).format(now);
+
+  document.getElementById('date').textContent =
+    new Intl.DateTimeFormat('de-CH',{
+      timeZone:'Europe/Zurich',
+      weekday:'long',
+      day:'2-digit',
+      month:'long',
+      year:'numeric'
+    }).format(now);
+}
+
+async function loadMessage(){
+  const messageBox = document.getElementById('message');
+  const status = document.getElementById('status');
+
+  try{
+    const response = await fetch(
+      MESSAGE_FILE + '?t=' + Date.now(),
+      {cache:'no-store'}
+    );
+
+    if(!response.ok){
+      throw new Error('HTTP ' + response.status);
+    }
+
+    const data = await response.json();
+
+    const today = localDateKey();
+    const messageDate = String(data.date || '').trim();
+    const message = String(data.message || '').trim();
+
+    if(messageDate === today && message){
+      messageBox.textContent = message;
+    }else{
+      messageBox.textContent = '';
+    }
+
+    status.textContent = '';
+  }catch(error){
+    // Bei einem Ladefehler bleibt der Bildschirm ruhig und schwarz.
+    // Die letzte Nachricht wird bewusst nicht gecacht.
+    messageBox.textContent = '';
+    status.textContent = '';
+  }
+}
+
+updateClock();
+loadMessage();
+
+setInterval(updateClock,1000);
+setInterval(loadMessage,60*1000);
+</script>
+
+</body>
+</html>
