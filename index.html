@@ -31,6 +31,35 @@ body{padding:10px}
 .card h2,.calendar-head h2{font-size:var(--title);line-height:1.2;margin:0;font-weight:750;letter-spacing:-.02em}
 .subtitle{color:var(--muted);font-size:var(--small);line-height:1.35;margin-top:3px}
 
+.weather-heading{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+}
+.dashboard-clock{
+  text-align:right;
+  flex:0 0 auto;
+  padding:1px 2px 0 12px;
+}
+.dashboard-time{
+  font-size:31px;
+  line-height:1;
+  font-weight:760;
+  letter-spacing:-.035em;
+  color:var(--text);
+  font-variant-numeric:tabular-nums;
+}
+.dashboard-date{
+  margin-top:4px;
+  font-size:11px;
+  line-height:1.2;
+  color:var(--muted);
+  font-weight:650;
+  white-space:nowrap;
+}
+
+
 /* Wetter: kompakte Infokarte statt grosser Hero-Bereich */
 .weather-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:11px 0 10px;padding:10px 12px;border-radius:14px;background:var(--blue-soft);min-height:78px}
 .current-temp{font-size:42px;font-weight:720;letter-spacing:-.045em;line-height:.95}
@@ -124,6 +153,9 @@ body{padding:10px}
   .today-events{grid-template-columns:repeat(4,minmax(0,1fr));padding:12px 14px 15px}
 }
 @media (orientation: portrait), (max-width:699px){
+  .dashboard-time{font-size:27px}
+  .dashboard-date{font-size:10px}
+
   .grid{grid-template-columns:1fr}
   .calendar-today{grid-column:1}
   .today-events{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -199,8 +231,16 @@ body{padding:10px}
 <main class="grid">
   <section class="card">
     <div class="card-inner">
-      <h2>Wetter Starrkirch-Wil</h2>
-      <div class="subtitle">Tagesverlauf · 2-Stunden-Prognose</div>
+      <div class="weather-heading">
+        <div>
+          <h2>Wetter Starrkirch-Wil</h2>
+          <div class="subtitle">Tagesverlauf · 2-Stunden-Prognose</div>
+        </div>
+        <div class="dashboard-clock" aria-label="Aktuelle Uhrzeit">
+          <div id="dashboardTime" class="dashboard-time">--:--</div>
+          <div id="dashboardDate" class="dashboard-date"></div>
+        </div>
+      </div>
 
       <div class="weather-top">
         <div>
@@ -265,6 +305,27 @@ body{padding:10px}
 <script>
 const LAT = 47.3486;
 const LON = 7.9264;
+
+
+function updateDashboardClock(){
+  const now = new Date();
+
+  document.getElementById('dashboardTime').textContent =
+    new Intl.DateTimeFormat('de-CH',{
+      timeZone:'Europe/Zurich',
+      hour:'2-digit',
+      minute:'2-digit',
+      hour12:false
+    }).format(now);
+
+  document.getElementById('dashboardDate').textContent =
+    new Intl.DateTimeFormat('de-CH',{
+      timeZone:'Europe/Zurich',
+      weekday:'short',
+      day:'2-digit',
+      month:'2-digit'
+    }).format(now);
+}
 
 function weatherInfo(code){
   if(code===0) return ['Sonnig','☀️'];
@@ -565,9 +626,12 @@ async function loadTodayEvents(){
   }
 }
 
+updateDashboardClock();
 loadWeather();
 loadBusDepartures();
 loadTodayEvents();
+
+setInterval(updateDashboardClock,1000);
 setInterval(loadWeather,10*60*1000);
 setInterval(loadBusDepartures,60*1000);
 setInterval(loadTodayEvents,5*60*1000);
