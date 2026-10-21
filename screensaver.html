@@ -46,6 +46,7 @@ body{
   font-weight:650;
   letter-spacing:-.05em;
   font-variant-numeric:tabular-nums;
+  color:#fff;
 }
 
 .date{
@@ -65,6 +66,7 @@ body{
   letter-spacing:-.02em;
   white-space:pre-wrap;
   overflow-wrap:anywhere;
+  color:#9fd8ff;
 }
 
 .message:empty{
@@ -153,8 +155,6 @@ async function loadMessage(){
 
     status.textContent = '';
   }catch(error){
-    // Bei einem Ladefehler bleibt der Bildschirm ruhig und schwarz.
-    // Die letzte Nachricht wird bewusst nicht gecacht.
     messageBox.textContent = '';
     status.textContent = '';
   }
