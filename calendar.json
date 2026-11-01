@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01T18:31:00.465199+00:00",
+  "updated": "2026-11-01T18:45:45.680265+00:00",
   "events": [
     {
       "title": "Hochzeitstag",
@@ -420,6 +420,12 @@
       "start": "2026-12-24",
       "end": "2027-01-04",
       "allDay": true
+    },
+    {
+      "title": "F: Banausiade",
+      "start": "2027-01-29T18:00:00+01:00",
+      "end": "2027-01-29T23:00:00+01:00",
+      "allDay": false
     },
     {
       "title": "Hochzeitstag",
