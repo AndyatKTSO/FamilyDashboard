@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-06T10:01:09.616632+00:00",
+  "updated": "2026-11-06T10:15:46.273098+00:00",
   "events": [
     {
       "title": "Hochzeitstag",
@@ -380,6 +380,12 @@
       "allDay": false
     },
     {
+      "title": "M: Monika Essen",
+      "start": "2026-12-15T18:30:00+01:00",
+      "end": "2026-12-15T19:30:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "A: Massage",
       "start": "2026-12-17T14:30:00+01:00",
       "end": "2026-12-17T15:30:00+01:00",
@@ -414,6 +420,12 @@
       "start": "2026-12-24",
       "end": "2027-01-04",
       "allDay": true
+    },
+    {
+      "title": "M: Monika Essen",
+      "start": "2027-01-07T18:30:00+01:00",
+      "end": "2027-01-07T19:30:00+01:00",
+      "allDay": false
     },
     {
       "title": "F: Banausiade",
