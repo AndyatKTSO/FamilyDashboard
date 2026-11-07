@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-07T17:01:08.212807+00:00",
+  "updated": "2026-11-07T17:15:44.857728+00:00",
   "events": [
     {
       "title": "Hochzeitstag",
@@ -393,8 +393,8 @@
     },
     {
       "title": "M: Ganzer Tag Arbeiten",
-      "start": "2026-12-10T08:00:00+01:00",
-      "end": "2026-12-10T19:00:00+01:00",
+      "start": "2026-12-10T08:30:00+01:00",
+      "end": "2026-12-10T18:30:00+01:00",
       "allDay": false
     },
     {
@@ -416,15 +416,33 @@
       "allDay": false
     },
     {
+      "title": "M: Ganzer Tag Arbeiten",
+      "start": "2026-12-15T08:30:00+01:00",
+      "end": "2026-12-15T18:30:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "M: Monika Essen",
       "start": "2026-12-15T18:30:00+01:00",
       "end": "2026-12-15T19:30:00+01:00",
       "allDay": false
     },
     {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-12-16T13:30:00+01:00",
+      "end": "2026-12-16T18:30:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "A: Massage",
       "start": "2026-12-17T14:30:00+01:00",
       "end": "2026-12-17T15:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-12-18T13:30:00+01:00",
+      "end": "2026-12-18T18:30:00+01:00",
       "allDay": false
     },
     {
@@ -440,6 +458,12 @@
       "allDay": true
     },
     {
+      "title": "M: Ganzer Tag Arbeiten",
+      "start": "2026-12-21T08:30:00+01:00",
+      "end": "2026-12-21T18:30:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "S: Keine Schule",
       "start": "2026-12-22",
       "end": "2026-12-23",
@@ -452,10 +476,34 @@
       "allDay": false
     },
     {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-12-23T13:30:00+01:00",
+      "end": "2026-12-23T18:30:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "S: Ferien",
       "start": "2026-12-24",
       "end": "2027-01-04",
       "allDay": true
+    },
+    {
+      "title": "M: Ganzer Tag Arbeiten",
+      "start": "2026-12-28T08:30:00+01:00",
+      "end": "2026-12-28T18:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-12-29T13:30:00+01:00",
+      "end": "2026-12-29T18:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Ganzer Tag Arbeiten",
+      "start": "2026-12-30T08:30:00+01:00",
+      "end": "2026-12-30T18:30:00+01:00",
+      "allDay": false
     },
     {
       "title": "M: Monika Essen",
