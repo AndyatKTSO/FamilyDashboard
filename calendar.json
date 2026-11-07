@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-07T16:45:43.302210+00:00",
+  "updated": "2026-11-07T17:01:08.212807+00:00",
   "events": [
     {
       "title": "Hochzeitstag",
@@ -368,15 +368,51 @@
       "allDay": false
     },
     {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-12-07T13:30:00+01:00",
+      "end": "2026-12-07T18:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-12-08T13:30:00+01:00",
+      "end": "2026-12-08T18:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: ganzer Tag Arbeiten",
+      "start": "2026-12-09T08:30:00+01:00",
+      "end": "2026-12-09T18:30:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "A: Aargau Weihnachtsapero",
       "start": "2026-12-09T17:30:00+01:00",
       "end": "2026-12-09T21:30:00+01:00",
       "allDay": false
     },
     {
+      "title": "M: Ganzer Tag Arbeiten",
+      "start": "2026-12-10T08:00:00+01:00",
+      "end": "2026-12-10T19:00:00+01:00",
+      "allDay": false
+    },
+    {
       "title": "M: Massage 19:30",
       "start": "2026-12-10T19:30:00+01:00",
       "end": "2026-12-10T20:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Nachmittag Arbeiten",
+      "start": "2026-12-11T13:30:00+01:00",
+      "end": "2026-12-11T18:30:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "M: Ganzer Tag Arbeiten",
+      "start": "2026-12-14T08:30:00+01:00",
+      "end": "2026-12-14T18:30:00+01:00",
       "allDay": false
     },
     {
