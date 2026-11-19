@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-19T18:01:02.888193+00:00",
+  "updated": "2026-11-19T18:15:39.299451+00:00",
   "events": [
     {
       "title": "M: Ganzer Tag Arbeiten",
@@ -287,12 +287,6 @@
       "title": "S: Geschäftsessen",
       "start": "2026-11-20T18:00:00+01:00",
       "end": "2026-11-20T19:00:00+01:00",
-      "allDay": false
-    },
-    {
-      "title": "S: Firmweg Abschluss",
-      "start": "2026-11-20T19:00:00+01:00",
-      "end": "2026-11-20T22:00:00+01:00",
       "allDay": false
     },
     {
