@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22T16:30:59.253499+00:00",
+  "updated": "2026-11-22T16:45:45.503635+00:00",
   "events": [
     {
       "title": "M: Nachmittag Arbeiten",
@@ -317,6 +317,12 @@
       "title": "M: Belgien-Amsterdam",
       "start": "2026-11-29T12:00:00+01:00",
       "end": "2026-12-06T13:00:00+01:00",
+      "allDay": false
+    },
+    {
+      "title": "A: Weihnachtsbaum Christian",
+      "start": "2026-11-29T13:00:00+01:00",
+      "end": "2026-11-29T18:00:00+01:00",
       "allDay": false
     },
     {
